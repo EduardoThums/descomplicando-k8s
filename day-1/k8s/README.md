@@ -1,3 +1,5 @@
+Comandos básicos do kubernetes
+
 ```bash
 # listar os deplosments do namespace kube-system
 kubectl get deployments --namespace kube-system
