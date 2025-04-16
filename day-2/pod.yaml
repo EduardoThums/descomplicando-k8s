@@ -11,18 +11,21 @@ spec:
     name: webserver
     resources: {}
     volumeMounts:
-      - mountPath: /etc/nginx/conf.d
+      - mountPath: /mnt/teste
         name: example-volume
-        readOnly: true
-  - image: httpd
-    name: apache
+  - image: debian
+    name: debian
+    command: ["sleep"]
+    args: ["1800"]
     resources: {}
+    volumeMounts:
+      - mountPath: /mnt/teste
+        name: example-volume
   dnsPolicy: ClusterFirst
   restartPolicy: Always
 
   volumes:
     - name: example-volume
-      # mount: ./nginx
-      hostPath:
-        path: ./nginx
+      emptyDir:
+        sizeLimit: 500Mi
 status: {}

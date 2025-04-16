@@ -9,3 +9,5 @@ k attach my-pod -c my-pod -it
 k exec -it my-pod -- bash
 cat /etc/proc/1
 ```
+
+1. limits are calculated in CPU units, 0.5 means half of a CPU core
