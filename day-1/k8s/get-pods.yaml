@@ -1,0 +1,120 @@
+apiVersion: v1
+items:
+- apiVersion: v1
+  kind: Pod
+  metadata:
+    annotations:
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"v1","kind":"Pod","metadata":{"annotations":{},"creationTimestamp":null,"labels":{"run":"meu-pode-nginx"},"name":"meu-pode-nginx","namespace":"default"},"spec":{"containers":[{"image":"nginx","name":"meu-pode-nginx","ports":[{"containerPort":80}],"resources":{}}],"dnsPolicy":"ClusterFirst","restartPolicy":"Always"},"status":{}}
+    creationTimestamp: "2025-03-18T14:11:33Z"
+    labels:
+      run: meu-pode-nginx
+    name: meu-pode-nginx
+    namespace: default
+    resourceVersion: "628"
+    uid: e0979449-fbdc-4763-8d77-0185e95cd442
+  spec:
+    containers:
+    - image: nginx
+      imagePullPolicy: Always
+      name: meu-pode-nginx
+      ports:
+      - containerPort: 80
+        protocol: TCP
+      resources: {}
+      terminationMessagePath: /dev/termination-log
+      terminationMessagePolicy: File
+      volumeMounts:
+      - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+        name: kube-api-access-4pljg
+        readOnly: true
+    dnsPolicy: ClusterFirst
+    enableServiceLinks: true
+    nodeName: meu-cluster-worker
+    preemptionPolicy: PreemptLowerPriority
+    priority: 0
+    restartPolicy: Always
+    schedulerName: default-scheduler
+    securityContext: {}
+    serviceAccount: default
+    serviceAccountName: default
+    terminationGracePeriodSeconds: 30
+    tolerations:
+    - effect: NoExecute
+      key: node.kubernetes.io/not-ready
+      operator: Exists
+      tolerationSeconds: 300
+    - effect: NoExecute
+      key: node.kubernetes.io/unreachable
+      operator: Exists
+      tolerationSeconds: 300
+    volumes:
+    - name: kube-api-access-4pljg
+      projected:
+        defaultMode: 420
+        sources:
+        - serviceAccountToken:
+            expirationSeconds: 3607
+            path: token
+        - configMap:
+            items:
+            - key: ca.crt
+              path: ca.crt
+            name: kube-root-ca.crt
+        - downwardAPI:
+            items:
+            - fieldRef:
+                apiVersion: v1
+                fieldPath: metadata.namespace
+              path: namespace
+  status:
+    conditions:
+    - lastProbeTime: null
+      lastTransitionTime: "2025-03-18T14:11:45Z"
+      status: "True"
+      type: PodReadyToStartContainers
+    - lastProbeTime: null
+      lastTransitionTime: "2025-03-18T14:11:33Z"
+      status: "True"
+      type: Initialized
+    - lastProbeTime: null
+      lastTransitionTime: "2025-03-18T14:11:45Z"
+      status: "True"
+      type: Ready
+    - lastProbeTime: null
+      lastTransitionTime: "2025-03-18T14:11:45Z"
+      status: "True"
+      type: ContainersReady
+    - lastProbeTime: null
+      lastTransitionTime: "2025-03-18T14:11:33Z"
+      status: "True"
+      type: PodScheduled
+    containerStatuses:
+    - containerID: containerd://4a3d58cbec04617e9770988c42145adcf05b4c88b9a0b3353fbb6274684118c8
+      image: docker.io/library/nginx:latest
+      imageID: docker.io/library/nginx@sha256:57a563126c0fd426346b02e5aa231ae9e5fd66f2248b36553207a0eca1403fde
+      lastState: {}
+      name: meu-pode-nginx
+      ready: true
+      restartCount: 0
+      started: true
+      state:
+        running:
+          startedAt: "2025-03-18T14:11:45Z"
+      volumeMounts:
+      - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+        name: kube-api-access-4pljg
+        readOnly: true
+        recursiveReadOnly: Disabled
+    hostIP: 172.18.0.4
+    hostIPs:
+    - ip: 172.18.0.4
+    phase: Running
+    podIP: 10.244.1.2
+    podIPs:
+    - ip: 10.244.1.2
+    qosClass: BestEffort
+    startTime: "2025-03-18T14:11:33Z"
+kind: List
+metadata:
+  resourceVersion: ""
