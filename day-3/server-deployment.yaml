@@ -1,0 +1,53 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  # creationTimestamp: "2025-04-19T19:06:37Z"
+  # generation: 1
+  labels:
+    app: my-dep
+  name: my-dep
+  namespace: default
+  # namespace: giropops
+  # uid: 468c93f3-d2a0-4a5f-aa45-edeaa0bcf85a
+spec:
+  # paused: true
+  progressDeadlineSeconds: 600
+  replicas: 2
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      app: my-dep
+  strategy:
+    # type: Recreate
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 2
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: my-dep
+    spec:
+      containers:
+      - image: nginx:1.15.0
+        # command: ["sleep"]
+        # args: ["1800"]
+        imagePullPolicy: Always
+        name: nginx
+        resources: {}
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+        resources:
+          limits:
+            cpu: 0.5
+            memory: 64Mi
+          requests:
+            cpu: 0.2
+            memory: 32Mi
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+status: {}
