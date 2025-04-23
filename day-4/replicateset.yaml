@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  # labels:
+  #   app: nginx-deployment
+  name: nginx-rs
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      foo: bar
+      # app: nginx-rs
+  # revisionHistoryLimit: 3
+  template:
+    metadata:
+      labels:
+        foo: bar
+        app: nginx-deployment
+    spec:
+      containers:
+        - image: nginx:1.15.0
+          name: nginx
+          resources:
+            limits:
+              cpu: 0.5
+              memory: 128Mi
+            requests:
+              cpu: 0.5
+              memory: 64Mi
