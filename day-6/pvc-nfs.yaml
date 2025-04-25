@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: giropops-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi # requests a piece of a the volume of 1gb in size
+  storageClassName: giropops-nfs
+  selector:
+    matchLabels:
+      the: chosen-one

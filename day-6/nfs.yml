@@ -1,0 +1,73 @@
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: giropops-nfs
+provisioner: kubernetes.io/no-provisioner # default in kind
+reclaimPolicy: Retain
+volumeBindingMode: WaitForFirstConsumer
+parameters:
+  archiveOnDelete: "false"
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: meu-pv-nfs
+  labels:
+    hello: world
+spec:
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadWriteOnce # only one pod is allow to read and write (per time?)
+  persistentVolumeReclaimPolicy: Retain # if the pvc is deleted then retain the volume
+  nfs:
+    server: 192.168.1.105
+    # server: host.docker.internal
+    # server: 172.17.0.1
+    path: /mnt/nfs
+    readOnly: false
+  # hostPath:
+  #   path: /mnt/data
+  storageClassName: giropops-nfs
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: giropops-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi # requests a piece of a the volume of 1gb in size
+  storageClassName: giropops-nfs
+  selector:
+    matchLabels:
+      hello: world
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deployment-with-pv
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      foo: bar
+  template:
+    metadata:
+      labels:
+        foo: bar
+    spec:
+      containers:
+        - image: nginx
+          name: nginx
+          volumeMounts:
+            - name: app 
+              mountPath: /mnt/point
+          securityContext:
+            privileged: true
+      volumes:
+        - name: app
+          persistentVolumeClaim:
+            claimName: giropops-pvc
