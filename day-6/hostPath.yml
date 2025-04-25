@@ -1,7 +1,7 @@
 apiVersion: storage.k8s.io/v1
 kind: StorageClass
 metadata:
-  name: giropops-nfs
+  name: giropops-host-path
 provisioner: rancher.io/local-path # default in kind
 reclaimPolicy: Delete
 volumeBindingMode: Immediate
@@ -26,7 +26,7 @@ spec:
     # readOnly: false
   hostPath:
     path: /mnt/data
-  storageClassName: giropops-host
+  storageClassName: giropops-host-path
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -34,11 +34,11 @@ metadata:
   name: giropops-pvc
 spec:
   accessModes:
-    - ReadWriteOnce
+    - ReadWriteMany
   resources:
     requests:
       storage: 1Gi # requests a piece of a the volume of 1gb in size
-  storageClassName: giropops-nfs
+  storageClassName: giropops-host-path
   # selector:
   #   matchLabels:
   #     hello: world
@@ -62,7 +62,7 @@ spec:
           name: nginx
           volumeMounts:
             - name: app 
-              mountPath: /mnt/point
+              mountPath: /usr/share/nginx/html
           # securityContext:
           #   privileged: true
       volumes:

@@ -1,0 +1,46 @@
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: giropops-nfs
+provisioner: rancher.io/local-path # default in kind
+reclaimPolicy: Delete
+volumeBindingMode: WaitForFirstConsumer
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: giropops-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi # requests a piece of a the volume of 1gb in size
+  storageClassName: giropops-nfs
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deployment-with-pv
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      foo: bar
+  template:
+    metadata:
+      labels:
+        foo: bar
+    spec:
+      containers:
+        - image: nginx
+          name: nginx
+          # volumeMounts:
+          #   - name: app 
+          #     mountPath: /etc/nginx/
+          # securityContext:
+          #   privileged: true
+      volumes:
+        - name: app
+          persistentVolumeClaim:
+            claimName: giropops-pvc
