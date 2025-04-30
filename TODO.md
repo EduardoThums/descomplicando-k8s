@@ -8,6 +8,8 @@ https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
 
 3. Create a kubernetes cluster with kubeadm using KVM sharing the same network. Put everything together with a Ansible script.
 
+4. Configure Secrets with the best pratices recommended by the k8s documentation
+
 # Self-managed Kube cluster setupers
 
 - kubeadm (k8s official way)
