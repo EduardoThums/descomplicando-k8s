@@ -10,6 +10,8 @@ https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
 
 4. Configure Secrets with the best pratices recommended by the k8s documentation
 
+5. Take a look at Weave Scope and Flux projects by WeaveWorks
+
 # Self-managed Kube cluster setupers
 
 - kubeadm (k8s official way)

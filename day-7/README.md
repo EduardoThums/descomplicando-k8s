@@ -40,6 +40,7 @@ Exposes a external server internally in the cluster, for example my-api.com.br -
 
 - [K8s statefulsets](https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/)
 - [Headless Service](https://kubernetes.io/docs/concepts/services-networking/service/#headless-services)
+- [StackOverflow question about Headless Service](https://stackoverflow.com/questions/71533293/my-understanding-of-headless-service-in-k8s-and-two-questions-to-verify)
 - [ClusterIP vs NodePort vs LoadBalancer](https://kodekloud.com/blog/clusterip-nodeport-loadbalancer/)
 - [Defining a service](https://kubernetes.io/docs/concepts/services-networking/service/#defining-a-service)
 
