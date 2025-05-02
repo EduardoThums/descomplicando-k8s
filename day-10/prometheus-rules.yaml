@@ -1,0 +1,16 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: nginx-webserver
+spec:
+  groups:
+    - name: NginxWebserverHealth
+      rules:
+        - alert: NginxIsDown
+          expr: nginx_up == 0
+          for: 1m
+          labels:
+            severity: critic
+          annotations:
+            summary: "O nginx não está respondendo"
+            description: 'O nginx rodando no namespace {{ $labels.namespace}} pod {{ $labels.pod }} está fora do ar'
