@@ -12,6 +12,14 @@ https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
 
 5. Take a look at Weave Scope and Flux projects by WeaveWorks
 
+6. Research a way to make deployment dependent of each other, like when a API uses as database (docker compose uses depends_on)
+
+    1. initContainers
+    2. readinessProbe
+    3. retry-logic at application levle
+
+7. Create a cluster with eksctl at AWS and configure a Ingress Nginx Controller
+
 # Self-managed Kube cluster setupers
 
 - kubeadm (k8s official way)

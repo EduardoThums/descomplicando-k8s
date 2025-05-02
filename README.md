@@ -10,6 +10,7 @@
 - [Day 8](./day-8/README.md)
 - [Day 9](./day-9/README.md)
 - [Day 10](./day-10/README.md)
+- [Day 11](./day-11/README.md)
 
 # Useful commands
 
@@ -19,4 +20,12 @@ k get pods --watch -l app=nginx
 
 # opens a shell to a utils pod
 kubectl run -i --tty --image busybox:1.28 dns-test --restart=Never --rm
+
+# view the documentation of a object
+k explain Ingress
 ```
+
+# Useful tools
+
+- [apko: Build OCI images from APK packages directly without Dockerfile ](https://github.com/chainguard-dev/apko)
+- [eksctl: create a EKS cluster at AWS from cli](https://eksctl.io/)

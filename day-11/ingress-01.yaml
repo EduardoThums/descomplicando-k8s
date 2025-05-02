@@ -1,0 +1,29 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: multi-host-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: 'my-host-01.com.br' # edit at /etc/hosts
+      http:
+        paths:
+          - path: /giropops-senhas
+            pathType: Prefix
+            backend:
+              service:
+                name: giropops-senhas
+                port:
+                  number: 5000
+    - host: 'my-host-02.com.br' # edit at /etc/hosts
+      http:
+        paths:
+          - path: /giropops-senhas
+            pathType: Prefix
+            backend:
+              service:
+                name: giropops-senhas
+                port:
+                  number: 5000
