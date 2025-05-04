@@ -1,0 +1,41 @@
+apiVersion: cert-manager.io/v1
+kind: Issuer
+metadata:
+  name: cloudflare-staging
+spec:
+  acme:
+    email: eduardocristiano01@gmail.com
+    server: https://acme-staging-v02.api.letsencrypt.org/directory # LetsEncrypt stating server
+    privateKeySecretRef: # where the ACME account registration key will be stored
+      name: acme-cloudflare-staging
+    solvers:
+      - dns01:
+          cloudflare:
+            email: eduardocristiano01@gmail.com
+            apiTokenSecretRef:
+              key: token
+              name: cloudflare-token
+        selector:
+          dnsNames:
+            - '*.iowqoeywqoeysoadyoasdyoasdyasodiyasod.uk'
+---
+apiVersion: cert-manager.io/v1
+kind: Issuer
+metadata:
+  name: cloudflare-production
+spec:
+  acme:
+    email: eduardocristiano01@gmail.com
+    server: https://acme-v02.api.letsencrypt.org/directory # LetsEncrypt production server
+    privateKeySecretRef: # where the ACME account registration key will be stored
+      name: acme-cloudflare-production
+    solvers:
+      - dns01:
+          cloudflare:
+            email: eduardocristiano01@gmail.com
+            apiTokenSecretRef:
+              key: token
+              name: cloudflare-token
+        selector:
+          dnsNames:
+            - '*.iowqoeywqoeysoadyoasdyoasdyasodiyasod.uk'
