@@ -9,6 +9,16 @@ Flow:
 
 ingress -> certificate -> certificate request -> order
 
+# Ingress NGINX Controller
+
+## Authentication
+
+```bash
+htpasswd -c password foo
+k create secret generic --from-file auth=password nginx-ingress-auth
+k apply -f nginx-http-ingress.yaml
+```
+
 # Commands
 
 ```bash
