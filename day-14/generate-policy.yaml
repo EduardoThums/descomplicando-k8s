@@ -1,0 +1,21 @@
+apiVersion: kyverno.io/v1
+kind: ClusterPolicy
+metadata:
+  name: generate-add-configmap
+spec:
+  emitWarning: true
+  rules:
+    - name: add-config-map
+      match:
+        all:
+          - resources:
+              kinds:
+                - Namespace
+      generate:
+        apiVersion: v1
+        kind: ConfigMap
+        name: default-configmap
+        namespace: "{{request.object.metadata.name}}"
+        data:
+          key.txt: "ihuuu"
+          secret.txt: "hello world"

@@ -13,6 +13,7 @@
 - [Day 11](./day-11/README.md)
 - [Day 12](./day-12/README.md)
 - [Day 13](./day-13/README.md)
+- [Day 14](./day-14/README.md)
 
 # Useful commands
 
@@ -32,7 +33,7 @@ k explain Ingress
 - [apko: Build OCI images from APK packages directly without Dockerfile ](https://github.com/chainguard-dev/apko)
 - [eksctl: create a EKS cluster at AWS from cli](https://eksctl.io/)
 - [Cosign: Utilizado para assinatura e verificação de imagens de contêiner.]()
-- [Kyverno: Utilizado para políticas de segurança no Kubernetes.]()
+- [Kyverno: Utilizado para políticas de segurança no Kubernetes.](https://kyverno.io/)
 - [APKO: Utilizado para construção de imagens de contêiner.]()
 - [Melange: Utilizado para construção de pacotes.]()
 - [Helm: Utilizado para gerenciamento de pacotes Kubernetes.]()
@@ -43,3 +44,4 @@ k explain Ingress
 - [CodeRabbit: Utilizado para revisão de código.]()
 - [DependaBot: Utilizado para manter as dependências atualizadas.]()
 - [Popeye: Utilizado para verificação de configurações de cluster Kubernetes.]()
+Clair

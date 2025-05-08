@@ -1,0 +1,33 @@
+apiVersion: kyverno.io/v1
+kind: ClusterPolicy
+metadata:
+  name: pod-resources-required
+spec:
+  emitWarning: true
+  rules:
+    - name: enforce-resources
+      match:
+        all:
+          - resources:
+              kinds:
+                - Pod
+              selector:
+                matchLabels:
+                  app: nginx
+              namespaces:
+                - default
+      mutate:
+        patchStrategicMerge:
+          metadata:
+            labels:
+              foo: bar
+      # validate:
+      #   failureAction: Enforce
+      #   message: "Pods precisam ter recursos limitados"
+      #   pattern:
+      #     spec:
+      #       containers:
+      #         - resources:
+      #             limits:
+      #               memory: "?*"
+      #               cpu: "?*"

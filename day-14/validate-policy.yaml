@@ -1,0 +1,77 @@
+apiVersion: kyverno.io/v1
+kind: ClusterPolicy
+metadata:
+  name: pod-resources-required
+spec:
+  emitWarning: true
+  rules:
+    - name: enforce-resources
+      match:
+        all:
+          - resources:
+              kinds:
+                - Pod
+              # selector:
+              #   matchLabels:
+              #     app: nginx
+              # namespaces:
+              #   - default
+      # exclude:
+      #   all:
+      #     - resources:
+      #         namespaces:
+      #           - "kube-system"
+      #           - "akatuski"
+      validate:
+        failureAction: Enforce
+        message: "Pods precisam ter recursos limitados"
+        pattern:
+          spec:
+            containers:
+              - resources:
+                  limits:
+                    memory: "?*"
+                    cpu: "?*"
+---
+apiVersion: kyverno.io/v1
+kind: ClusterPolicy
+metadata:
+  name: validate-running-as-root
+spec:
+  emitWarning: true
+  rules:
+    - name: disallow-root
+      match:
+        all:
+          - resources:
+              kinds:
+                - Pod
+      validate:
+        failureAction: Enforce
+        message: "You shall not run as root friendo"
+        pattern:
+          spec:
+            containers:
+              - =(securityContext):
+                  runAsNonRoot: false
+---
+apiVersion: kyverno.io/v1
+kind: ClusterPolicy
+metadata:
+  name: validate-trusted-registries
+spec:
+  emitWarning: true
+  rules:
+    - name: registry-must-be-trusted
+      match:
+        all:
+          - resources:
+              kinds:
+                - Pod
+      validate:
+        failureAction: Enforce
+        message: "Images must be from microsoft registry"
+        pattern:
+          spec:
+            containers:
+              - image: "mcr.microsoft.com/?*"
