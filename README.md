@@ -14,6 +14,7 @@
 - [Day 12](./day-12/README.md)
 - [Day 13](./day-13/README.md)
 - [Day 14](./day-14/README.md)
+- [Day 15](./day-15/README.md)
 
 # Useful commands
 
@@ -44,4 +45,3 @@ k explain Ingress
 - [CodeRabbit: Utilizado para revisão de código.]()
 - [DependaBot: Utilizado para manter as dependências atualizadas.]()
 - [Popeye: Utilizado para verificação de configurações de cluster Kubernetes.]()
-Clair
