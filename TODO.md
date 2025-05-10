@@ -20,6 +20,8 @@ https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
 
 7. Create a cluster with eksctl at AWS and configure a Ingress Nginx Controller
 
+8. Research about Karpenter to scale nodes in AWS
+
 # Self-managed Kube cluster setupers
 
 - kubeadm (k8s official way)
@@ -35,3 +37,7 @@ https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
 # Tools
 
 - MetalLB
+
+# AddOns
+
+Extend the functionality of k8s in different parts, like CNI, service discovery, infra. See more at https://kubernetes.io/docs/concepts/cluster-administration/addons/
