@@ -26,6 +26,8 @@ To check which CNI is installed in the node look at the folder `/etc/cni/net.d/`
 }
 ```
 
+In the ingress mode the netpol only block access to the selected pods when the client accessing the pods are outside the same namespace.
+
 # eksctl
 
 Create a cluster configuration file from the cli

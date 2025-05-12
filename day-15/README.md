@@ -20,3 +20,7 @@ The affinity can be based in nodes and pods.
 # add taint
 k taint node descomplicando-k8s-worker1 maitance=true:NoExecution
 ```
+
+# Documentation
+
+- [Networking Policy K8s](https://kubernetes.io/docs/concepts/services-networking/network-policies/)

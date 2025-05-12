@@ -46,3 +46,7 @@ k explain Ingress
 - [CodeRabbit: Utilizado para revisão de código.]()
 - [DependaBot: Utilizado para manter as dependências atualizadas.]()
 - [Popeye: Utilizado para verificação de configurações de cluster Kubernetes.]()
+
+# Recommended articles
+
+- [Setting Up a Kind Cluster with Cilium and NGINX Ingress Controller](https://docs.frinx.io/frinx-machine/installation/customization/create-kind-cluster/)
