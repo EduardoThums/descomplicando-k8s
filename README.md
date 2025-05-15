@@ -16,6 +16,7 @@
 - [Day 14](./day-14/README.md)
 - [Day 15](./day-15/README.md)
 - [Day 16](./day-16/README.md)
+- [Day 17](./day-17/README.md)
 
 # Useful commands
 
@@ -28,6 +29,9 @@ kubectl run -i --tty --image busybox:1.28 dns-test --restart=Never --rm
 
 # view the documentation of a object
 k explain Ingress
+
+# list the resources available in the api
+k api-resource
 ```
 
 # Useful tools
