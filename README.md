@@ -17,6 +17,7 @@
 - [Day 15](./day-15/README.md)
 - [Day 16](./day-16/README.md)
 - [Day 17](./day-17/README.md)
+- [Day 18](./day-18/README.md)
 
 # Useful commands
 
