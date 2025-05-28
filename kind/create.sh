@@ -4,6 +4,8 @@
 # usage: ./create.sh
 set -xe
 
+./delete.sh
+
 echo "Creating kind cluster"
 kind create cluster --config cluster.yaml
 

@@ -13,7 +13,7 @@ kubectl wait \
 	--for condition=Established \
 	--all CustomResourceDefinition \
 	--namespace=monitoring
-  kubectl apply -f manifests/
+kubectl apply -f manifests/
 ```
 
 # Service Monitor

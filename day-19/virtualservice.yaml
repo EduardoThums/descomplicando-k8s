@@ -1,0 +1,33 @@
+apiVersion: networking.istio.io/v1
+kind: VirtualService
+metadata:
+  name: nginx-giropops
+  namespace: giropops
+spec:
+  hosts:
+    - "*"
+  gateways:
+    - giropops
+  http:
+    - name: send-to-nginx-giropops-svc
+      match:
+        - uri:
+            prefix: /giropops
+      rewrite:
+        uri: /
+      route:
+        - destination:
+            host: nginx-giropops
+            port:
+              number: 80
+    - name: send-to-nginx-strigus-svc
+      match:
+        - uri:
+            prefix: /strigus
+      rewrite:
+        uri: /
+      route:
+        - destination:
+            host: nginx-strigus
+            port:
+              number: 80
